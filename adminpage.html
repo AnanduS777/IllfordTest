@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Welcome Admin!</h1>
+    <form id="mainForm">
+        <button class="btn btn-outline-success" type="submit" id="signoutbtn">Log Out</button>
+    </form>
+</body>
+<script>
+    // Function to log out the user
+    const logoutUser = () => {
+        const confirmation = confirm("Are you sure you want to log out?");
+        if (confirmation) {
+            // Clear user credentials and information from session storage
+            sessionStorage.removeItem("user-cred");
+            sessionStorage.removeItem("user-info");
+
+            // Redirect to the sign-in page
+            window.location.href = "sign_in.html";
+        }
+    };
+
+    // Function to check if the user is logged in
+    const checkUserCred = () => {
+        if (!sessionStorage.getItem("user-cred")) {
+            // If user is not logged in, redirect to the sign-in page
+            //window.location.href = "sign_in.html";
+        }
+    };
+
+    // Add an event listener to the Log Out button
+    const signoutBtn = document.getElementById("signoutbtn");
+    signoutBtn.addEventListener("click", logoutUser);
+
+    // Check if the user is logged in when the page loads
+    window.addEventListener("load", checkUserCred);
+</script>
+</html>
